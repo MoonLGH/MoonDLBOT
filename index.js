@@ -6,7 +6,7 @@ const token = '1520570744:AAFwU4cGxyqxRkQSsMm_arlrwGlBQGuTEa0';
 
 const ytdl = require("ytdl-core")
 // Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(process.env.Tok, {polling: true});
 const ytcm = /\S+\/ytdl (.+)/
 // Matches "/Download [whatever]"
 const igdl = require("instagram-downloader")
