@@ -32,12 +32,9 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
         contentType: 'video/mp4',
     };
 
-    const bufs = [];
-    const stream = ytdl(resp);
-    stream.on('data', function(d){ bufs.push(d); });
-    stream.on('end', function(){
-      bot.sendMessage(chatId, "Video Downloaded!")
-      const vid = Buffer.concat(bufs);
+    ytdl(resp)
+    .pipe(input)
+
     const ffmpeg = require("fluent-ffmpeg")
 
     var pathToFfmpeg = require('ffmpeg-static'); 
@@ -45,7 +42,7 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
     
     ffmpeg.setFfmpegPath(pathToFfmpeg)
     
-    ffmpeg({ source: vid })
+    ffmpeg({ source: input })
     .format("mp4")
     .save(out)
     
@@ -54,7 +51,7 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
         bot.sendVideo(chatId, out,{},fileOptions)
     })
 //         bot.sendVideo(chatId, vid,{},fileOptions)
-    })
+  
     // send back the matched "whatever" to the chat
     bot.sendMessage(chatId, info.videoDetails.title);
   }else{
