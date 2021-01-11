@@ -32,26 +32,15 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
         contentType: 'video/mp4',
     };
 
-    ytdl(resp)
-    .pipe(input)
+    const bufs = [];
+    const stream = ytdl(resp,{filter: format => format.container === 'mp4'});
+    stream.on('data', function(d){ bufs.push(d); });
+    stream.on('end', function(){
+      bot.sendMessage(chatId, "Video Downloaded!")
+      const vid = Buffer.concat(bufs);
+    bot.sendVideo(chatId, vid,{},fileOptions)
 
-    const ffmpeg = require("fluent-ffmpeg")
-
-    var pathToFfmpeg = require('ffmpeg-static'); 
-    
-    
-    ffmpeg.setFfmpegPath(pathToFfmpeg)
-    
-    ffmpeg({ source: input })
-    .format("mp4")
-    .save(out)
-    
-    .on('end', function() {
-  console.log("converted")
-        bot.sendVideo(chatId, out,{},fileOptions)
     })
-//         bot.sendVideo(chatId, vid,{},fileOptions)
-  
     // send back the matched "whatever" to the chat
     bot.sendMessage(chatId, info.videoDetails.title);
   }else{
@@ -60,6 +49,8 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
   }
 
 
+});
+ 
 });
 let title;
 let url;
