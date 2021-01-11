@@ -45,7 +45,7 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
     
     ffmpeg.setFfmpegPath(pathToFfmpeg)
     
-    ffmpeg({ source: stream })
+    ffmpeg({ source: vid })
     .format("mp4")
     .save(out)
     
