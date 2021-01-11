@@ -37,7 +37,21 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
     stream.on('end', function(){
       bot.sendMessage(chatId, "Video Downloaded!")
       const vid = Buffer.concat(bufs);
-    bot.sendVideo(chatId, vid,{},fileOptions)
+    const ffmpeg = require("fluent-ffmpeg")
+
+    var pathToFfmpeg = require('ffmpeg-static'); 
+    
+    
+    ffmpeg.setFfmpegPath(pathToFfmpeg)
+    
+    ffmpeg({ source: vid })
+    .format("mp4")
+    .saveToFile(outpt)
+    
+    .on('end', function() {
+
+        bot.sendVideo(chatId, outpt,{},fileOptions)
+    })
 
     })
     // send back the matched "whatever" to the chat
