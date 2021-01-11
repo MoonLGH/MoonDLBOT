@@ -50,7 +50,7 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
     .saveToFile(outpt)
     
     .on('end', function() {
-
+  console.log("converted")
         bot.sendVideo(chatId, outpt,{},fileOptions)
     })
 
