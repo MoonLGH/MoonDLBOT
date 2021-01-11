@@ -38,22 +38,22 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
     stream.on('end', function(){
       bot.sendMessage(chatId, "Video Downloaded!")
       const vid = Buffer.concat(bufs);
-//     const ffmpeg = require("fluent-ffmpeg")
+    const ffmpeg = require("fluent-ffmpeg")
 
-//     var pathToFfmpeg = require('ffmpeg-static'); 
+    var pathToFfmpeg = require('ffmpeg-static'); 
     
     
-//     ffmpeg.setFfmpegPath(pathToFfmpeg)
+    ffmpeg.setFfmpegPath(pathToFfmpeg)
     
-//     ffmpeg({ source: vid })
-//     .format("mp4")
-//     .saveToFile(outpt)
+    ffmpeg({ source: bufs })
+    .format("mp4")
+    .save(out)
     
-//     .on('end', function() {
-//   console.log("converted")
-//         bot.sendVideo(chatId, outpt,{},fileOptions)
-//     })
-        bot.sendVideo(chatId, vid,{},fileOptions)
+    .on('end', function() {
+  console.log("converted")
+        bot.sendVideo(chatId, out,{},fileOptions)
+    })
+//         bot.sendVideo(chatId, vid,{},fileOptions)
     })
     // send back the matched "whatever" to the chat
     bot.sendMessage(chatId, info.videoDetails.title);
