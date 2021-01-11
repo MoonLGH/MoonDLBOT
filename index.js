@@ -51,7 +51,7 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
 
 });
  
-});
+
 let title;
 let url;
 let video_link;
