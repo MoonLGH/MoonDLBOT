@@ -74,7 +74,7 @@ const fileOptions = {filename: title,};
 bot.sendVideo(chatId,file, {}, fileOptions)
 
   }, console.log("cb"))
-
+console.log(resp)
 });
 bot.onText(/\/start/i, async (msg) => {
   const chatId = msg.chat.id;
