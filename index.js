@@ -73,7 +73,7 @@ const fileOptions = {filename: title,};
   const file = await request(video_link)
 bot.sendVideo(chatId,file, {}, fileOptions)
 
-  })
+  }, console.log("cb"))
 
 });
 bot.onText(/\/start/i, async (msg) => {
