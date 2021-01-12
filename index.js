@@ -71,9 +71,8 @@ let $ = cheerio.load(html);
  bot.sendMessage(chatId,"Video Link : " + video_link)
 const fileOptions = {filename: title,};
   const file = await request(video_link)
-  // const respo = await bot.sendVideo(chatId, file)
 bot.sendVideo(chatId,file, {}, fileOptions)
-// bot.sendVideo(chatId,)
+
   })
 
 });
