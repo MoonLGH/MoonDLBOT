@@ -29,7 +29,6 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
       // Explicitly specify the file name.
       filename: info.videoDetails.title,
       // Explicitly specify the MIME type.
-        contentType: 'video/mp4',
     };
 
     const bufs = [];
