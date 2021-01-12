@@ -62,7 +62,7 @@ bot.onText(/\/igdl (.+)/i, async(msg, match) => {
   console.log("igdl command was executed")
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "whatever
-  request(resp, async (error, response, html) => {
+ request(resp, async function(error, response, html){
 let $ = cheerio.load(html);
  url = $('meta[property="og:url"]').attr('content');
  title = $('meta[property="og:title"]').attr('content');
