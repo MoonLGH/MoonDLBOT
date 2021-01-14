@@ -114,10 +114,11 @@ bot.onText(/\/ytpl (.+)/i, async (msg, match) => {
   
   
   const pli = playlist.items
-  fs.mkdirSync("./"+ playlist.title)
   
   judul = playlist.title.replace(/[/\\?%*:|"<>]/g, '-');
   
+      fs.mkdirSync("./"+ judul)
+
   let lenght = playlist.estimatedItemCount
   pli.forEach(async (item)=>{ 
   
