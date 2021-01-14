@@ -94,3 +94,85 @@ bot.onText(/\/toword (.+)/i, async (msg, match) => {
 });
 // Listen for any kind of message. There are different kinds of
 // messages.
+
+bot.onText(/\/ytpl (.+)/i, async (msg, match) => {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
+
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever
+  var ytpl = require('ytpl');
+  var fs = require('fs');
+  
+  const ytdl = require("ytdl-core")
+  let ytplurl;
+  let playlist
+  let judul;
+  async function abc(){
+   playlist = await ytpl(resp);
+  
+  
+  const pli = playlist.items
+  fs.mkdirSync("./"+ playlist.title)
+  
+  judul = playlist.title.replace(/[/\\?%*:|"<>]/g, '-');
+  
+  let lenght = playlist.estimatedItemCount
+  pli.forEach(async (item)=>{ 
+  
+  const vidname = await ytdl.getBasicInfo(item.shortUrl);
+  console.log(item.shortUrl)
+  var filename = vidname.videoDetails.title
+  
+  filename = filename.replace(/[/\\?%*:|"<>]/g, '-');
+  
+      ytdl(item.shortUrl)
+      .pipe(fs.createWriteStream("./"+ judul +"/"+ filename + '.mp4')).on("finish", ()=>{
+         console.log(vidname.videoDetails.title + " done")
+         lenght -= 1
+         console.log(lenght)
+         if(lenght == 0){
+             zip()
+      }
+      })
+  
+   })
+  
+  }
+  abc()
+  
+  function zip(){
+  var archiver = require('archiver');
+  
+  var output = fs.createWriteStream(judul +'.zip');
+  var archive = archiver('zip');
+  
+  output.on('close', function () {
+      console.log(archive.pointer() + ' total bytes');
+      console.log('archiver has been finalized and the output file descriptor has closed.');
+      const fse = require("fs-extra")
+      // fse.removeSync("./"+ judul)
+      bot.sendDocument(chatId,"./"+ judul +".zip")
+      removezip()
+  });
+  
+  archive.on('error', function(err){
+      throw err;
+  });
+  
+  archive.pipe(output);
+  
+  // append files from a sub-directory, putting its contents at the root of archive
+  archive.directory("./"+ judul, false);
+  
+  
+  archive.finalize();
+  }
+  function removezip(){
+      const fse = require("fs-extra")
+      fse.removeSync("./"+judul +".zip")
+      fse.removeSync("./"+ judul)
+  
+  }
+});
