@@ -73,7 +73,6 @@ let $ = cheerio.load(html);
       // Explicitly specify the file name.
       filename: title,
       // Explicitly specify the MIME type.
-        contentType: 'video/mp4',
     };
   const file = await request(video_link)
 bot.sendVideo(chatId,file, {}, fileOptions)
