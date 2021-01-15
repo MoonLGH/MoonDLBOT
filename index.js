@@ -10,8 +10,6 @@ const bot = new TelegramBot(process.env.Tok, {polling: true});
 const ytcm = /\S+\/ytdl (.+)/
 // Matches "/Download [whatever]"
 
-let cheerio = require('cheerio');
-let request = require('request');
 
 bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
   // 'msg' is the received Message from Telegram
@@ -55,6 +53,8 @@ let title;
 let url;
 let video_link;
 bot.onText(/\/igdl (.+)/, async(msg, match) => {
+const request = require("request")
+const cheerio = require("cheerio")
   // 'msg' is the received Message from Telegram
   // 'match' is the result of executing the regexp above on the text content
   // of the message
