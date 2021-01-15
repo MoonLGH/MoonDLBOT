@@ -69,7 +69,12 @@ let $ = cheerio.load(html);
  video_link = $('meta[property="og:video"]').attr('content');
  bot.sendMessage(chatId,"Title : " + title) 
  bot.sendMessage(chatId,"Video Link : " + video_link)
-const fileOptions = {filename: title,};
+    const fileOptions = {
+      // Explicitly specify the file name.
+      filename: info.videoDetails.title,
+      // Explicitly specify the MIME type.
+        contentType: 'video/mp4',
+    };
   const file = await request(video_link)
 bot.sendVideo(chatId,file, {}, fileOptions)
 
