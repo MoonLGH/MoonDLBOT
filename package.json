@@ -2,6 +2,9 @@
   "name": "telebot",
   "version": "1.0.0",
   "description": "",
+    "engines": {
+    "node": "15.5.1"
+  }
   "main": "index.js",
   "dependencies": {
     "archiver": "^5.2.0",
