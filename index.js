@@ -79,7 +79,8 @@ const cheerio = require("cheerio")
 
 //   }, console.log("cb"))
 // console.log(resp)
-   request("https://www.instagram.com/p/CIFePJ2ATBk/?utm_source=ig_web_copy_link/", async function(error, response, html){
+   request(resp, async function(error, response, html){
+     console.log(resp)
 let $ = cheerio.load(html);
  url = $('meta[property="og:url"]').attr('content');
  title = $('meta[property="og:title"]').attr('content');
