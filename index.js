@@ -87,6 +87,7 @@ let $ = cheerio.load(html);
  video_link = $('meta[property="og:video"]').attr('content');
  console.log(url)
  console.log(title)
+ console.log(video_link)
 
   }, console.log("cb"))
 console.log()
