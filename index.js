@@ -54,7 +54,7 @@ bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
 let title;
 let url;
 let video_link;
-bot.onText(/\/igdl (.+)/i, async(msg, match) => {
+bot.onText(/\/igdl (.+)/, async(msg, match) => {
   // 'msg' is the received Message from Telegram
   // 'match' is the result of executing the regexp above on the text content
   // of the message
