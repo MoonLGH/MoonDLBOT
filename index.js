@@ -62,23 +62,34 @@ const cheerio = require("cheerio")
   console.log("igdl command was executed")
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "whatever
- request("https://www.instagram.com/p/CIFePJ2ATBk/?utm_source=ig_web_copy_link/", async function(error, response, html){
+//  request("https://www.instagram.com/p/CIFePJ2ATBk/?utm_source=ig_web_copy_link/", async function(error, response, html){
+// let $ = cheerio.load(html);
+//  url = $('meta[property="og:url"]').attr('content');
+//  title = $('meta[property="og:title"]').attr('content');
+//  video_link = $('meta[property="og:video"]').attr('content');
+//  bot.sendMessage(chatId,"Title : " + title) 
+//  bot.sendMessage(chatId,"Video Link : " + video_link)
+//     const fileOptions = {
+//       // Explicitly specify the file name.
+//       filename: title,
+//       // Explicitly specify the MIME type.
+//     };
+//   const file = await request(video_link)
+// bot.sendVideo(chatId,file, {}, fileOptions)
+
+//   }, console.log("cb"))
+// console.log(resp)
+   request("https://www.instagram.com/p/CIFePJ2ATBk/?utm_source=ig_web_copy_link/", async function(error, response, html){
 let $ = cheerio.load(html);
  url = $('meta[property="og:url"]').attr('content');
  title = $('meta[property="og:title"]').attr('content');
  video_link = $('meta[property="og:video"]').attr('content');
- bot.sendMessage(chatId,"Title : " + title) 
- bot.sendMessage(chatId,"Video Link : " + video_link)
-    const fileOptions = {
-      // Explicitly specify the file name.
-      filename: title,
-      // Explicitly specify the MIME type.
-    };
-  const file = await request(video_link)
-bot.sendVideo(chatId,file, {}, fileOptions)
+ console.log(url)
+ console.log(title)
 
   }, console.log("cb"))
-console.log(resp)
+console.log()
+
 });
 bot.onText(/\/start/i, async (msg) => {
   const chatId = msg.chat.id;
