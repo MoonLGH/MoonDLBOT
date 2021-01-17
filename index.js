@@ -82,14 +82,7 @@ const cheerio = require("cheerio")
   const axios =require("axios")
 
 axios.get(resp).then(respon =>{
-let $ = cheerio.load(respon.data);
-url = $('meta[property="og:url"]').attr('content');
-title = $('meta[property="og:title"]').attr('content');
-video_link = $('meta[property="og:video"]').attr('content');
-console.log(url)
-console.log(title)
-console.log(video_link)
-console.log("axios")
+console.log(respon.data)
 })
 console.log()
 
