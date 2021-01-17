@@ -76,8 +76,7 @@ console.log("axios")
 console.log(respon.data)
 })
  }, 5000);
-  }, console.log("cb"))
-console.log()
+
 });
 bot.onText(/\/start/i, async (msg) => {
   const chatId = msg.chat.id;
