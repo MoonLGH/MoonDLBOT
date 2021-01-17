@@ -58,10 +58,12 @@ const cheerio = require("cheerio")
   // 'msg' is the received Message from Telegram
   // 'match' is the result of executing the regexp above on the text content
   // of the message
-
-  console.log("igdl command was executed")
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "match 1"
+
+ setTimeout(() => {
+     console.log("igdl command was executed")
+
  request(resp, async function(error, response, html){
 let $ = cheerio.load(html);
  url = $('meta[property="og:url"]').attr('content');
@@ -72,7 +74,7 @@ let $ = cheerio.load(html);
  console.log(video_link)
 
 console.log(html)
-
+ }, 5000);
   }, console.log("cb"))
 console.log()
 });
