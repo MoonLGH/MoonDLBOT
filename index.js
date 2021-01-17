@@ -61,7 +61,8 @@ const cheerio = require("cheerio")
 
   console.log("igdl command was executed")
   const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever request(resp, async function(error, response, html){
+  const resp = match[1]; // the captured "match 1"
+ request(resp, async function(error, response, html){
 let $ = cheerio.load(html);
  url = $('meta[property="og:url"]').attr('content');
  title = $('meta[property="og:title"]').attr('content');
@@ -74,8 +75,6 @@ console.log(html)
 
   }, console.log("cb"))
 console.log()
-console.log()
-
 });
 bot.onText(/\/start/i, async (msg) => {
   const chatId = msg.chat.id;
