@@ -60,20 +60,21 @@ const cheerio = require("cheerio")
   // of the message
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "match 1"
-
+const axios = require("axios")
  setTimeout(() => {
      console.log("igdl command was executed")
-
- request(resp, async function(error, response, html){
-let $ = cheerio.load(html);
- url = $('meta[property="og:url"]').attr('content');
- title = $('meta[property="og:title"]').attr('content');
- video_link = $('meta[property="og:video"]').attr('content');
- console.log(url)
- console.log(title)
- console.log(video_link)
-
-console.log(html)
+axios.get(resp).then(respon =>{
+let $ = cheerio.load(respon.data);
+url = $('meta[property="og:url"]').attr('content');
+title = $('meta[property="og:title"]').attr('content');
+// console.log(respon.data)
+video_link = $('meta[property="og:video"]').attr('content');
+console.log(url)
+console.log(title)
+console.log(video_link)
+console.log("axios")
+console.log(respon.data)
+})
  }, 5000);
   }, console.log("cb"))
 console.log()
