@@ -96,7 +96,7 @@ bot.onText(/\/searchyt (.+)/i, async(msg, match) => {
   let filter = availableFilters.get('Type').get('Video');
   let searchResults = await ytsr(filter.url, { limit: 3 });
   let video = searchResults;
-  if (!video) console.log('no relevant video found');
+  if (!video) bot.sendMessage(chatId, `Aku Tidak Menemukan apapun`);
   else{
     video.items.forEach(async (ele) => {
       
@@ -106,10 +106,7 @@ bot.onText(/\/searchyt (.+)/i, async(msg, match) => {
       console.log('Views = ' + ele.views) 
       console.log('URL = ' + ele.url) 
 
-    bot.sendMessage(chatId, `Title : ${ele.title} \n Channel : ${ele.author.name} \n Duration : ${ele.duration} \n Views : ${ele.views} `);
-    bot.sendMessage(chatId, `URL : ${ele.url} `);
-
-
+    bot.sendMessage(chatId, `Title : ${ele.title} \n Channel : ${ele.author.name} \n Duration : ${ele.duration} \n Views : ${ele.views} \n URL : ${ele.url}`);
       console.log()
 
 
