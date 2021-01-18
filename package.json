@@ -19,7 +19,8 @@
     "node-telegram-bot-api": "^0.51.0",
     "request": "^2.88.2",
     "ytdl-core": "^4.4.1",
-    "ytpl": "^2.0.4"
+    "ytpl": "^2.0.4",
+    "ytsr": "^3.2.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
