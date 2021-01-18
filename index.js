@@ -83,6 +83,42 @@ bot.onText(/\/start/i, async (msg) => {
   console.log("someone /start")
   bot.sendMessage(chatId, "Iya iya sono coba /igdl sama /ytdl ajg gw males bikin /start")
 })
+bot.onText(/\/searchyt (.+)/i, async(msg, match) => {
+  // 'msg' is the received Message from Telegram
+  // 'match' is the result of executing the regexp above on the text content
+  // of the message
+
+  console.log("searchyt command was executed")
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever
+  const ytsr = require('ytsr');
+  let availableFilters = await ytsr.getFilters(resp);
+  let filter = availableFilters.get('Type').get('Video');
+  let searchResults = await ytsr(filter.url, { limit: 3 });
+  let video = searchResults;
+  if (!video) console.log('no relevant video found');
+  else{
+    video.items.forEach(async (ele) => {
+      
+      console.log('title = ' + ele.title)
+      console.log('channel = ' + ele.author.name)
+      console.log('Duration = ' + ele.duration) 
+      console.log('Views = ' + ele.views) 
+      console.log('URL = ' + ele.url) 
+
+    bot.sendMessage(chatId, `Title : ${ele.title} \n Channel : ${ele.author.name} \n Duration : ${ele.duration} \n Views : ${ele.views} `);
+    bot.sendMessage(chatId, `URL : ${ele.url} `);
+
+
+      console.log()
+
+
+    });
+
+  }
+
+
+});
 bot.onText(/\/toword (.+)/i, async (msg, match) => {
   // 'msg' is the received Message from Telegram
   // 'match' is the result of executing the regexp above on the text content
