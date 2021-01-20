@@ -106,7 +106,17 @@ bot.onText(/\/searchyt (.+)/i, async(msg, match) => {
       console.log('Views = ' + ele.views) 
       console.log('URL = ' + ele.url) 
 
-    bot.sendMessage(chatId, `Title : ${ele.title} \n Channel : ${ele.author.name} \n Duration : ${ele.duration} \n Views : ${ele.views} \n URL : ${ele.url}`);
+      const keyboard = bot.
+InlineKeyboardMarkup = {
+  inline_keyboard : [[]],
+}
+keyboard.inline_keyboard[0].push({
+  text: "DOWNLOAD"
+})
+      
+    bot.sendMessage(chatId, `Title : ${ele.title} \n Channel : ${ele.author.name} \n Duration : ${ele.duration} \n Views : ${ele.views} \n URL : ${ele.url}`,{
+    reply_markup : keyboard     
+  });
       console.log()
 
 
