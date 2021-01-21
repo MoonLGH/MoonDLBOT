@@ -12,7 +12,7 @@ const ytcm = /\S+\/ytdl (.+)/
 let baseUrl = "https://otakudesu.tv/"
 const axios = require("axios")
 const cheerio = require("cheerio")
-bot.onText(/\/otakudesuhome (.+)/i, async(msg) => {
+bot.onText(/\/otakudesuhome (.+)/i, async(msg,match) => {
 
   let home = {};
   let ongoing = [];
@@ -88,7 +88,7 @@ $(".venz")
 console.log("home:",home)
 
   
-  
+})
 })
 
 bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
