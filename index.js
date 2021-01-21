@@ -89,7 +89,7 @@ console.log("home:",home)
 
   
   
-
+})
 });
 
 bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
