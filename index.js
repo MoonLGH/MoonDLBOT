@@ -83,11 +83,10 @@ $(".venz")
         link,
       });
       home.complete = complete;
-      return home
+
+  console.log(home)
     });
 
-  
-console.log("home:",home)
 
   
 })
