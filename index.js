@@ -18,12 +18,7 @@ bot.onText(/\/otakudesuhome (.+)/i, async(msg) => {
   let ongoing = [];
   let complete = [];      
   const chatId = msg.chat.id;
-
-  let home = {};
-  let ongoing = [];
-  let complete = [];      
-//   const chatId = msg.chat.id;
-let baseUrl = "https://otakudesu.tv/"
+const request = require("request")
 request(baseUrl, async (error, response, html) => {
     let $ = cheerio.load(html)
 $(".venz").children()
