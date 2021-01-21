@@ -95,8 +95,8 @@ home.complete.forEach(element => {
   titlecomp.push(element.title)
 });
 
-bot.sendMessage(chatId,"Ongoing:",titleongoing)
-bot.sendMessage(chatId,"Complete:",titlecomp)
+bot.sendMessage(chatId,("Ongoing:",titleongoing))
+bot.sendMessage(chatId,("Complete:",titlecomp))
 
 
 });
