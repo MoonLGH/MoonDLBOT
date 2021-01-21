@@ -114,7 +114,7 @@ InlineKeyboardMarkup = {
 keyboard0.inline_keyboard[0].push({
   text: "DOWNLOAD", callback_data : "dl1"
 })
-  bot.sendMessage(chatId, `Title : ${vid0.title} \n Channel : ${vid0.author.name} \n Duration : ${vid0.duration} \n Views : ${vid0.views} `,{
+  bot.sendMessage(chatId, `Title : ${vid0.title} \n Channel : ${vid0.author.name} \n Duration : ${vid0.duration} \n Views : ${vid0.views} \n URL : ${vid0.url}`,{
     reply_markup : keyboard0     
   });
 
@@ -131,10 +131,10 @@ const keyboard1 = bot.
 InlineKeyboardMarkup = {
 inline_keyboard : [[]],
 }
-keyboard0.inline_keyboard[0].push({
+keyboard1.inline_keyboard[0].push({
 text: "DOWNLOAD", callback_data : "dl2"
 })
-bot.sendMessage(chatId, `Title : ${vid1.title} \n Channel : ${vid1.author.name} \n Duration : ${vid1.duration} \n Views : ${vid1.views} `,{
+bot.sendMessage(chatId, `Title : ${vid1.title} \n Channel : ${vid1.author.name} \n Duration : ${vid1.duration} \n Views : ${vid1.views} \n URL : ${vid1.url}`,{
 reply_markup : keyboard1  
 });
 
@@ -151,10 +151,10 @@ const keyboard2 = bot.
 InlineKeyboardMarkup = {
 inline_keyboard : [[]],
 }
-keyboard0.inline_keyboard[0].push({
+keyboard2.inline_keyboard[0].push({
 text: "DOWNLOAD", callback_data : "dl3"
 })
-bot.sendMessage(chatId, `Title : ${vid2.title} \n Channel : ${vid2.author.name} \n Duration : ${vid2.duration} \n Views : ${vid2.views} `,{
+bot.sendMessage(chatId, `Title : ${vid2.title} \n Channel : ${vid2.author.name} \n Duration : ${vid2.duration} \n Views : ${vid2.views} \n URL : ${vid2.url}`,{
 reply_markup : keyboard2
 });
 
