@@ -160,20 +160,22 @@ reply_markup : keyboard2
 
 
   //CB
+let link
   bot.on("callback_query", (query) =>{
     const { data } = query;
     switch(data){
       case "dl1":{
-        bot.sendMessage(chatId,vid0.url)
+        link = vid0.url
         break
       }case "dl2":{
-        bot.sendMessage(chatId,vid1.url)
+        link = vid1.url
         break
       }case "dl3":{
-        bot.sendMessage(chatId,vid2.url)
+        link = vid2.url
         break
       }
     }
+    bot.sendMessage(chatId,`Kamu memilih ${link}`
   })
       console.log()
 
