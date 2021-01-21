@@ -111,12 +111,20 @@ InlineKeyboardMarkup = {
   inline_keyboard : [[]],
 }
 keyboard.inline_keyboard[0].push({
-  text: "DOWNLOAD", callback_data : ele.url
+  text: "DOWNLOAD", callback_data : 'dl'
 })
       
     bot.sendMessage(chatId, `Title : ${ele.title} \n Channel : ${ele.author.name} \n Duration : ${ele.duration} \n Views : ${ele.views} \n URL : ${ele.url}`,{
     reply_markup : keyboard     
   });
+        bot.on("callback_query", (query) =>{
+    const { data } = query;
+    switch(data){
+      case "dl":{
+        bot.sendMessage(chatId,ele.url)
+      }
+    }
+  })
       console.log()
 
 
