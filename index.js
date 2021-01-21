@@ -175,7 +175,7 @@ let link
         break
       }
     }
-    bot.sendMessage(chatId,`You've ${link}`)
+    bot.sendMessage(chatId,`You've Pick ${link}`)
   })
       console.log()
 
