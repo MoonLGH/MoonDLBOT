@@ -10,7 +10,8 @@ const ytcm = /\S+\/ytdl (.+)/
 // Matches "/Download [whatever]"
 
 bot.onText(/\/otakudesuhome (.+)/i, async(msg, match) => {
-
+const axios = require("axios")
+const cheerio = require("cheerio")
   let home = {};
   let ongoing = [];
   let complete = [];      
