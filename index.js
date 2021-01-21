@@ -84,10 +84,12 @@ $(".venz")
       return home
     });
 
+  
+console.log("home:",home)
 
+  
+  
 })
-  console.log(home)
-});
 
 bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
   // 'msg' is the received Message from Telegram
