@@ -14,14 +14,15 @@ const axios = require("axios")
 const cheerio = require("cheerio")
 bot.onText(/\/otakudesuhome (.+)/i, async(msg,match) => {
 
-  let home = {};
-  let ongoing = [];
-  let complete = [];      
+
   const chatId = msg.chat.id;
 const request = require("request")
 console.log("spomeone /od")
 request(baseUrl, async (error, response, html) => {
     let $ = cheerio.load(html)
+      let home = {};
+  let ongoing = [];
+  let complete = [];      
 $(".venz").children()
     .eq(0)
     .find("ul > li")
@@ -90,7 +91,7 @@ console.log("home:",home)
 
   
 })
-  console.log("home:",home)
+//   console.log("home:",home)
 })
 
 bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
