@@ -9,6 +9,7 @@ const bot = new TelegramBot(process.env.Tok, {polling: true});
 const ytcm = /\S+\/ytdl (.+)/
 // Matches "/Download [whatever]"
 
+let baseUrl = "https://otakudesu.tv/"
 bot.onText(/\/otakudesuhome (.+)/i, async(msg, match) => {
 const axios = require("axios")
 const cheerio = require("cheerio")
@@ -17,7 +18,7 @@ const cheerio = require("cheerio")
   let complete = [];      
   const chatId = msg.chat.id;
 
-  const rnder = await axios.get("https://otakudesu.tv/")
+  const rnder = await axios.get(baseUrl)
   let $ = cheerio.load(rnder.data)
 
   const element = $(".venz").children()
