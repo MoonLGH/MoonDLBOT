@@ -87,16 +87,10 @@ const cheerio = require("cheerio")
 const titleongoing = []
 
 home.ongoing.forEach(element => {
-  titleongoing.push(element.title)
+  bot.sendMessage(chatId,element.title)
 });
 const titlecomp = []
 
-home.complete.forEach(element => {
-  titlecomp.push(element.title)
-});
-
-bot.sendMessage(chatId,("Ongoing:",titleongoing))
-bot.sendMessage(chatId,("Complete:",titlecomp))
 
 
 });
