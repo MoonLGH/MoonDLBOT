@@ -9,6 +9,95 @@ const bot = new TelegramBot(process.env.Tok, {polling: true});
 const ytcm = /\S+\/ytdl (.+)/
 // Matches "/Download [whatever]"
 
+bot.onText(/\/otakudesuhome (.+)/i, async(msg, match) => {
+
+  let home = {};
+  let ongoing = [];
+  let complete = [];      
+  const chatId = msg.chat.id;
+
+  const rnder = await axios.get(baseUrl)
+  let $ = cheerio.load(rnder.data)
+
+  const element = $(".venz").children()
+    .eq(0)
+    .find("ul > li")
+    .each(function () {
+  let episode, uploaded_on, day_updated, thumb, title, link, id;
+
+      $(this)
+        .find(".thumb > a")
+        .filter(function () {
+          title = $(this).find(".thumbz > h2").text();
+          thumb = $(this).find(".thumbz > img").attr("src");
+          link = $(this).attr("href");
+          id = link.replace(`${baseUrl}anime/`, "");
+        });
+      uploaded_on = $(this).find(".newnime").text();
+      episode = $(this).find(".epz").text().replace(" ", "");
+      day_updated = $(this).find(".epztipe").text().replace(" ", "");
+      ongoing.push({
+        title,
+        id,
+        thumb,
+        episode,
+        uploaded_on,
+        day_updated,
+        link,
+      });
+
+      home.ongoing = ongoing;
+      return home
+  })
+
+
+    const element1 = $(".venz")
+    .children()
+    .eq(1)
+    .find("ul > li")
+    .each(function () {
+      let episode, uploaded_on, score, thumb, title, link, id;
+
+      $(this)
+        .find(".thumb > a")
+        .filter(function () {
+          title = $(this).find(".thumbz > h2").text();
+          thumb = $(this).find(".thumbz > img").attr("src");
+          link = $(this).attr("href");
+          id = link.replace(`${baseUrl}anime/`, "");
+        });
+      uploaded_on = $(this).find(".newnime").text();
+      episode = $(this).find(".epz").text().replace(" ", "");
+      score = parseFloat($(this).find(".epztipe").text().replace(" ", ""));
+      complete.push({
+        title,
+        id,
+        thumb,
+        episode,
+        uploaded_on,
+        score,
+        link,
+      });
+      home.complete = complete;
+      return home
+    });
+
+const titleongoing = []
+
+home.ongoing.forEach(element => {
+  titleongoing.push(element.title)
+});
+const titlecomp = []
+
+home.complete.forEach(element => {
+  titlecomp.push(element.title)
+});
+
+bot.sendMessage(chatId,"Ongoing:",titleongoing)
+bot.sendMessage(chatId,"Complete:",titlecomp)
+
+
+});
 
 bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
   // 'msg' is the received Message from Telegram
