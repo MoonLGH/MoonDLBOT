@@ -82,6 +82,9 @@ bot.onText(/\/start/i, async (msg) => {
   console.log("someone /start")
   bot.sendMessage(chatId, "Iya iya sono coba /igdl sama /ytdl ajg gw males bikin /start")
 })
+let vid0
+let vid1
+let vid2
 bot.onText(/\/searchyt (.+)/i, async(msg, match) => {
   // 'msg' is the received Message from Telegram
   // 'match' is the result of executing the regexp above on the text content
@@ -97,7 +100,7 @@ bot.onText(/\/searchyt (.+)/i, async(msg, match) => {
   let video = searchResults;
   if (!video) bot.sendMessage(chatId, `Aku Tidak Menemukan apapun`);
   else{
-        const vid0 = video.items[0]
+        vid0 = video.items[0]
       
       console.log('title = ' + vid0.title)
       console.log('channel = ' + vid0.author.name)
@@ -117,7 +120,7 @@ keyboard0.inline_keyboard[0].push({
     reply_markup : keyboard0     
   });
 
-  const vid1 = video.items[1]
+  vid1 = video.items[1]
       
 console.log('title = ' + vid1.title)
 console.log('channel = ' + vid1.author.name)
@@ -137,7 +140,7 @@ bot.sendMessage(chatId, `Title : ${vid1.title} \n Channel : ${vid1.author.name} 
 reply_markup : keyboard1  
 });
 
-const vid2 = video.items[2]
+vid2 = video.items[2]
       
 console.log('title = ' + vid2.title)
 console.log('channel = ' + vid2.author.name)
@@ -159,6 +162,16 @@ reply_markup : keyboard2
 
 
   //CB
+
+      console.log()
+
+
+
+
+  }
+
+
+});
 let link
   bot.on("callback_query", (query) =>{
     const { data } = query;
@@ -176,15 +189,6 @@ let link
     }
     bot.sendMessage(chatId,`You've Pick ${link}`)
   })
-      console.log()
-
-
-
-
-  }
-
-
-});
 bot.onText(/\/toword (.+)/i, async (msg, match) => {
   // 'msg' is the received Message from Telegram
   // 'match' is the result of executing the regexp above on the text content
