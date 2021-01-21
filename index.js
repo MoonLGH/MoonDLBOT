@@ -98,30 +98,80 @@ bot.onText(/\/searchyt (.+)/i, async(msg, match) => {
   let video = searchResults;
   if (!video) bot.sendMessage(chatId, `Aku Tidak Menemukan apapun`);
   else{
-    video.items.forEach(async (ele) => {
+        const vid0 = video.items[0]
       
-      console.log('title = ' + ele.title)
-      console.log('channel = ' + ele.author.name)
-      console.log('Duration = ' + ele.duration) 
-      console.log('Views = ' + ele.views) 
-      console.log('URL = ' + ele.url) 
+      console.log('title = ' + vid0.title)
+      console.log('channel = ' + vid0.author.name)
+      console.log('Duration = ' + vid0.duration) 
+      console.log('Views = ' + vid0.views) 
+      console.log('URL = ' + vid0.url) 
+      console.log()
 
-      const keyboard = bot.
+const keyboard0 = bot.
 InlineKeyboardMarkup = {
   inline_keyboard : [[]],
 }
-keyboard.inline_keyboard[0].push({
-  text: "DOWNLOAD", callback_data : 'dl'
+keyboard0.inline_keyboard[0].push({
+  text: "DOWNLOAD", callback_data : "dl1"
 })
-      
-    bot.sendMessage(chatId, `Title : ${ele.title} \n Channel : ${ele.author.name} \n Duration : ${ele.duration} \n Views : ${ele.views} \n URL : ${ele.url}`,{
-    reply_markup : keyboard     
+  bot.sendMessage(chatId, `Title : ${vid0.title} \n Channel : ${vid0.author.name} \n Duration : ${vid0.duration} \n Views : ${vid0.views} `,{
+    reply_markup : keyboard0     
   });
-        bot.on("callback_query", (query) =>{
+
+  const vid1 = video.items[1]
+      
+console.log('title = ' + vid1.title)
+console.log('channel = ' + vid1.author.name)
+console.log('Duration = ' + vid1.duration) 
+console.log('Views = ' + vid1.views) 
+console.log('URL = ' + vid1.url) 
+console.log()
+
+const keyboard1 = bot.
+InlineKeyboardMarkup = {
+inline_keyboard : [[]],
+}
+keyboard0.inline_keyboard[0].push({
+text: "DOWNLOAD", callback_data : "dl2"
+})
+bot.sendMessage(chatId, `Title : ${vid1.title} \n Channel : ${vid1.author.name} \n Duration : ${vid1.duration} \n Views : ${vid1.views} `,{
+reply_markup : keyboard1  
+});
+
+const vid2 = video.items[2]
+      
+console.log('title = ' + vid2.title)
+console.log('channel = ' + vid2.author.name)
+console.log('Duration = ' + vid2.duration) 
+console.log('Views = ' + vid2.views) 
+console.log('URL = ' + vid2.url) 
+console.log()
+
+const keyboard2 = bot.
+InlineKeyboardMarkup = {
+inline_keyboard : [[]],
+}
+keyboard0.inline_keyboard[0].push({
+text: "DOWNLOAD", callback_data : "dl3"
+})
+bot.sendMessage(chatId, `Title : ${vid2.title} \n Channel : ${vid2.author.name} \n Duration : ${vid2.duration} \n Views : ${vid2.views} `,{
+reply_markup : keyboard2
+});
+
+
+  //CB
+  bot.on("callback_query", (query) =>{
     const { data } = query;
     switch(data){
-      case "dl":{
-        bot.sendMessage(chatId,ele.url)
+      case "dl1":{
+        bot.sendMessage(chatId,vid0.url)
+        break
+      }case "dl2":{
+        bot.sendMessage(chatId,vid1.url)
+        break
+      }case "dl3":{
+        bot.sendMessage(chatId,vid2.url)
+        break
       }
     }
   })
