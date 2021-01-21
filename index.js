@@ -16,7 +16,7 @@ bot.onText(/\/otakudesuhome (.+)/i, async(msg, match) => {
   let complete = [];      
   const chatId = msg.chat.id;
 
-  const rnder = await axios.get(baseUrl)
+  const rnder = await axios.get("https://otakudesu.tv/")
   let $ = cheerio.load(rnder.data)
 
   const element = $(".venz").children()
