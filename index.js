@@ -49,43 +49,11 @@ $(".venz").children()
         day_updated,
         link,
       });
-
-      home.ongoing = ongoing;
-      return home
+bot.sendMessage(chatId, ongoing.link)
+      
   })
 
 
-$(".venz")
-    .children()
-    .eq(1)
-    .find("ul > li")
-    .each(function () {
-      let episode, uploaded_on, score, thumb, title, link, id;
-
-      $(this)
-        .find(".thumb > a")
-        .filter(function () {
-          title = $(this).find(".thumbz > h2").text();
-          thumb = $(this).find(".thumbz > img").attr("src");
-          link = $(this).attr("href");
-          id = link.replace(`${baseUrl}anime/`, "");
-        });
-      uploaded_on = $(this).find(".newnime").text();
-      episode = $(this).find(".epz").text().replace(" ", "");
-      score = parseFloat($(this).find(".epztipe").text().replace(" ", ""));
-      complete.push({
-        title,
-        id,
-        thumb,
-        episode,
-        uploaded_on,
-        score,
-        link,
-      });
-      home.complete = complete;
-
-  console.log(home)
-    });
 
 
   
