@@ -12,7 +12,7 @@ const ytcm = /\S+\/ytdl (.+)/
 let baseUrl = "https://otakudesu.tv/"
 const axios = require("axios")
 const cheerio = require("cheerio")
-bot.onText(/\/otakudesuhome (.+)/i, async(msg,match) => {
+bot.onText(/\/otakudesuhome/i, async(msg) => {
 
 
   const chatId = msg.chat.id;
@@ -49,7 +49,7 @@ $(".venz").children()
         day_updated,
         link,
       });
-bot.sendMessage(chatId, ongoing.link)
+return bot.sendMessage(chatId, ongoing.link)
       
   })
 
