@@ -89,7 +89,7 @@ await req.on('response', res => {
           current: clacSize(currentSize, 3),
           speed: 0
       })
-const files =fs.createReadStream("./"+filename)
+const files = _fs.createReadStream("./"+filename)
 
        
       res.on('data', c => {
