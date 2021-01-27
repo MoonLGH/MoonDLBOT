@@ -18,6 +18,7 @@ let on_going = []
 const cheerio = require("cheerio")
 request(baseUrl, async (error, response, html) => {
         const $ = cheerio.load(html);
+  console.log(html)
         $(".venz").children()
           .eq(0)
           .find("ul > li")
