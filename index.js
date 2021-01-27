@@ -61,7 +61,7 @@ async function cb(u){
 const url = await GetLink(u)
 
 const req = await _https.get(url.url)
-
+let filename
 await req.on('response', res => {
           filename = decodeURIComponent(res.headers['content-disposition'].match(/filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/)[1])
 
