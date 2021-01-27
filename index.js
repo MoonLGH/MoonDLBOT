@@ -16,38 +16,22 @@ bot.onText(/\/otakudesuhome/i, async(msg) => {
 let on_going = []
   const request = require("request")
 const cheerio = require("cheerio")
-  request(baseUrl, async (error, response, html) => {
+request(baseUrl, async (error, response, html) => {
         const $ = cheerio.load(html);
-        const element = $(".venz");
-        let episode, uploaded_on, day_updated, thumb, title, link, id;
-        element
-          .children()
+        $(".venz").children()
           .eq(0)
           .find("ul > li")
           .each(function () {
+            let episode, uploaded_on, day_updated, thumb, title, link, id;
             $(this)
               .find(".thumb > a")
               .filter(function () {
                 title = $(this).find(".thumbz > h2").text();
-                thumb = $(this).find(".thumbz > img").attr("src");
-                link = $(this).attr("href");
-                id = link.replace(`${baseUrl}anime/`, "");
               });
-            uploaded_on = $(this).find(".newnime").text();
-            episode = $(this).find(".epz").text().replace(" ", "");
-            day_updated = $(this).find(".epztipe").text().replace(" ", "");
-            on_going.push({
-              title,
-              id,
-              thumb,
-              episode,
-              uploaded_on,
-              day_updated,
-              link,
-            });
-                  return console.log(on_going)
-          });
-                  return console.log(on_going)
+            on_going.push({title})
+            return console.log(on_going)
+        })
+            return console.log(on_going)
       })
 })
 
