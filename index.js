@@ -4,7 +4,7 @@ const TelegramBot = require('node-telegram-bot-api');
 // replace the value below with the Telegram token you receive from @BotFather
 
 const ytdl = require("ytdl-core")
-// const bot = new TelegramBot(process.env.TELEGRAMKEY, {polling: true});
+const bot = new TelegramBot(process.env.TELEGRAMKEY, {polling: true});
 const ytcm = /\S+\/ytdl (.+)/
 // calm this zippy dl will be an massive code
 const clacSize = (a, b) => {
@@ -57,6 +57,25 @@ console.log('✅  ' + _colors.green('Done'))
 return { error: false, url: dlurl }
 }
 
+async function cb(u){
+const url = await GetLink(u)
+
+if (url.error) {
+  console.log(_colors.bgRed(_colors.white(' ' + url.message + ' ')))
+  return null
+}
+const req = await _https.get(url.url)
+
+await req.on('response', res => {
+          filename = decodeURIComponent(res.headers['content-disposition'].match(/filename\*?=['"]?(?:UTF-\d['"]*)?([^;\r\n"']*)['"]?;?/)[1])
+
+})
+
+const fs = require(“fs”)
+const files =fs.createReadStream("./"+filename)
+
+        bot.sendDocument(chatId,files)
+}
 async function abc(u){
 const url = await GetLink(u)
 
@@ -99,8 +118,7 @@ await req.on('response', res => {
           console.log('✅  ' + _colors.green('Success Download File : ' + filename))
           bot.sendMessage(chatId,"Download Success")
           bot.sendMessage(chatId,filename)
-      const files = _fs.createReadStream("./"+filename)
-        bot.sendDocument(chatId,files)
+cb(u)
           loadbar.stop()
           file.close()
       })
