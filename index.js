@@ -12,6 +12,7 @@ let baseUrl = "https://otakudesu.tv/"
 const axios = require("axios")
 const cheerio = require("cheerio")
 bot.onText(/\/otakudesuhome/i, async(msg) => {
+  console.log("someone /od")
 let on_going = []
   const request = require("request")
 const cheerio = require("cheerio")
@@ -46,7 +47,7 @@ const cheerio = require("cheerio")
             });
                   return console.log(on_going)
           });
-
+                  return console.log(on_going)
       })
 })
 
