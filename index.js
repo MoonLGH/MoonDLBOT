@@ -7,58 +7,46 @@ const ytdl = require("ytdl-core")
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(process.env.Tok, {polling: true});
 const ytcm = /\S+\/ytdl (.+)/
-// Matches "/Download [whatever]"
 
 let baseUrl = "https://otakudesu.tv/"
 const axios = require("axios")
 const cheerio = require("cheerio")
 bot.onText(/\/otakudesuhome/i, async(msg) => {
 
-
-  const chatId = msg.chat.id;
-const request = require("request")
-console.log("spomeone /od")
-request(baseUrl, async (error, response, html) => {
-    let $ = cheerio.load(html)
-      let home = {};
-  let ongoing = [];
-  let complete = [];      
-$(".venz").children()
-    .eq(0)
-    .find("ul > li")
-    .each(function () {
-  let episode, uploaded_on, day_updated, thumb, title, link, id;
-
-      $(this)
-        .find(".thumb > a")
-        .filter(function () {
-          title = $(this).find(".thumbz > h2").text();
-          thumb = $(this).find(".thumbz > img").attr("src");
-          link = $(this).attr("href");
-          id = link.replace(`${baseUrl}anime/`, "");
-        });
-      uploaded_on = $(this).find(".newnime").text();
-      episode = $(this).find(".epz").text().replace(" ", "");
-      day_updated = $(this).find(".epztipe").text().replace(" ", "");
-      ongoing.push({
-        title,
-        id,
-        thumb,
-        episode,
-        uploaded_on,
-        day_updated,
-        link,
-      });
-return bot.sendMessage(chatId, ongoing.link)
-      
-  })
-
-
-
-
-  
-})
-//   console.log("home:",home)
+  const request = require("request")
+const cheerio = require("cheerio")
+  request(baseUrl, async (error, response, html) => {
+        const $ = cheerio.load(html);
+        const element = $(".venz");
+        let episode, uploaded_on, day_updated, thumb, title, link, id;
+        element
+          .children()
+          .eq(0)
+          .find("ul > li")
+          .each(function () {
+            $(this)
+              .find(".thumb > a")
+              .filter(function () {
+                title = $(this).find(".thumbz > h2").text();
+                thumb = $(this).find(".thumbz > img").attr("src");
+                link = $(this).attr("href");
+                id = link.replace(`${baseUrl}anime/`, "");
+              });
+            uploaded_on = $(this).find(".newnime").text();
+            episode = $(this).find(".epz").text().replace(" ", "");
+            day_updated = $(this).find(".epztipe").text().replace(" ", "");
+            on_going.push({
+              title,
+              id,
+              thumb,
+              episode,
+              uploaded_on,
+              day_updated,
+              link,
+            });
+          });
+        return console.log(on_going)
+      })
 })
 
 bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
