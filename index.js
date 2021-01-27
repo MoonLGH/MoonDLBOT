@@ -5,7 +5,7 @@ const TelegramBot = require('node-telegram-bot-api');
 
 const ytdl = require("ytdl-core")
 // Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(process.env.Tok, {polling: true});
+// const bot = new TelegramBot(process.env.Tok, {polling: true});
 const ytcm = /\S+\/ytdl (.+)/
 
 let baseUrl = "https://otakudesu.tv/"
