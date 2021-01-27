@@ -89,6 +89,9 @@ await req.on('response', res => {
           current: clacSize(currentSize, 3),
           speed: 0
       })
+const files =fs.createReadStream("./"+filename)
+
+       
       res.on('data', c => {
           currentSize += c.length;
           loadbar.increment(c.length, {
@@ -100,9 +103,11 @@ await req.on('response', res => {
           console.log('✅  ' + _colors.green('Success Download File : ' + filename))
           bot.sendMessage(chatId,"Download Success")
           bot.sendMessage(chatId,filename)
-cb(u)
-          loadbar.stop()
+
+       loadbar.stop()
           file.close()
+        bot.sendDocument(chatId,files)
+   
       })
       res.on('error', _ => {
           loadbar.stop()
