@@ -60,10 +60,6 @@ return { error: false, url: dlurl }
 async function cb(u){
 const url = await GetLink(u)
 
-if (url.error) {
-  console.log(_colors.bgRed(_colors.white(' ' + url.message + ' ')))
-  return null
-}
 const req = await _https.get(url.url)
 
 await req.on('response', res => {
