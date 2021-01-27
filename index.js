@@ -12,7 +12,7 @@ let baseUrl = "https://otakudesu.tv/"
 const axios = require("axios")
 const cheerio = require("cheerio")
 bot.onText(/\/otakudesuhome/i, async(msg) => {
-
+const on_going = []
   const request = require("request")
 const cheerio = require("cheerio")
   request(baseUrl, async (error, response, html) => {
