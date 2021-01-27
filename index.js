@@ -67,8 +67,8 @@ await req.on('response', res => {
 
 })
 
-const fs = require(“fs”)
-const files =fs.createReadStream("./"+filename)
+
+const files =_fs.createReadStream("./"+filename)
 
         bot.sendDocument(chatId,files)
 }
