@@ -2,7 +2,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 // replace the value below with the Telegram token you receive from @BotFather
-
+let srcd = false
 const ytdl = require("ytdl-core")
 const bot = new TelegramBot(process.env.TELEGRAMKEY, {polling: true});
 // calm this zippy dl will be an massive code
@@ -215,6 +215,7 @@ bot.onText(/\/searchyt (.+)/i, async(msg, match) => {
   let video = searchResults;
   if (!video) bot.sendMessage(chatId, `Aku Tidak Menemukan apapun`);
   else{
+if(srcd == false){
         vid0 = video.items[0]
       
       console.log('title = ' + vid0.title)
@@ -275,12 +276,17 @@ bot.sendMessage(chatId, `Title : ${vid2.title} \n Channel : ${vid2.author.name} 
 reply_markup : keyboard2
 });
 
+srcd = true
 
+setTimeout(()=>{
+srcd = false
+},3000)
   //CB
 
       console.log()
+}else if(srcd == true){
 
-
+bot.sendMessage(chatId, `Cooldown 3 detik gan`);
 
 
   }
