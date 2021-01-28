@@ -50,19 +50,18 @@ return { error: false, url: dlurl }
 }
 
 
-async function send(file){
-        const files = _fs.createReadStream("./"+file)
-        bot.sendDocument(chatId,files)
-}
+
 bot.onText(/\/zippy (.+)/i, async (msg, match) => {
   
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "whatever"
 
   abc(resp)
-
-
-
+  
+async function send(file){
+        const files = _fs.createReadStream("./"+file)
+        bot.sendDocument(chatId,files)
+}
 
 async function abc(u){
 const url = await GetLink(u)
