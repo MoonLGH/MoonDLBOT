@@ -280,13 +280,13 @@ srcd = true
 
 setTimeout(()=>{
 srcd = false
-},3000)
+},500)
   //CB
 
       console.log()
 }else if(srcd == true){
 
-bot.sendMessage(chatId, `Cooldown 3 detik gan`);
+bot.sendMessage(chatId, `Cooldown 0.5 detik gan`);
 
 
   }
