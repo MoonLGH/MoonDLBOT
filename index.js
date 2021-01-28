@@ -5,7 +5,6 @@ const TelegramBot = require('node-telegram-bot-api');
 
 const ytdl = require("ytdl-core")
 const bot = new TelegramBot(process.env.TELEGRAMKEY, {polling: true});
-const ytcm = /\S+\/ytdl (.+)/
 // calm this zippy dl will be an massive code
 const clacSize = (a, b) => {
   if (0 == a) return "0 Bytes";
@@ -50,6 +49,10 @@ return { error: false, url: dlurl }
 }
 
 
+async function send(file,id){
+        const files = _fs.createReadStream("./"+file)
+        bot.sendDocument(id,files)
+}
 
 bot.onText(/\/zippy (.+)/i, async (msg, match) => {
   
@@ -58,10 +61,7 @@ bot.onText(/\/zippy (.+)/i, async (msg, match) => {
 
   abc(resp)
   
-async function send(file){
-        const files = _fs.createReadStream("./"+file)
-        bot.sendDocument(chatId,files)
-}
+
 
 async function abc(u){
 const url = await GetLink(u)
@@ -110,7 +110,7 @@ const files = _fs.createReadStream("./"+filename)
           bot.sendMessage(chatId,filename)
        loadbar.stop()
           file.close()   
-        send(filename)
+        send(filename,chatId)
       })
       res.on('error', _ => {
           loadbar.stop()
