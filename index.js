@@ -124,33 +124,6 @@ const files = _fs.createReadStream("./"+filename)
 });
 
 //zippy end
-let baseUrl = "https://otakudesu.tv/"
-const axios = require("axios")
-const cheerio = require("cheerio")
-bot.onText(/\/otakudesuhome/i, async(msg) => {
-  console.log("someone /od")
-let on_going = []
-  const request = require("request")
-const cheerio = require("cheerio")
-request(baseUrl, async (error, response, html) => {
-        const $ = cheerio.load(html);
-  console.log(html)
-        $(".venz").children()
-          .eq(0)
-          .find("ul > li")
-          .each(function () {
-            let episode, uploaded_on, day_updated, thumb, title, link, id;
-            $(this)
-              .find(".thumb > a")
-              .filter(function () {
-                title = $(this).find(".thumbz > h2").text();
-              });
-            on_going.push({title})
-            return console.log(on_going)
-        })
-            return console.log(on_going)
-      })
-})
 
 bot.onText(/\/ytdl (.+)/i, async (msg, match) => {
   // 'msg' is the received Message from Telegram
