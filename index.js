@@ -24,14 +24,6 @@ _https = require('https'),
 _axios = require('axios'),
 _math = require('mathjs');
 
-bot.onText(/\/zippy (.+)/i, async (msg, match) => {
-  
-  const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever"
-
-  abc(resp)
-
-
 async function GetLink(u) {
 console.log('⏳  ' + _colors.yellow(`Get Page From : ${u}`))
 const zippy = await _axios({ method: 'GET', url: u }).then(res => res.data).catch(err => false)
@@ -56,6 +48,20 @@ try {
 console.log('✅  ' + _colors.green('Done'))
 return { error: false, url: dlurl }
 }
+
+
+async function send(file){
+        const files = _fs.createReadStream("./"+file)
+        bot.sendDocument(chatId,files)
+}
+bot.onText(/\/zippy (.+)/i, async (msg, match) => {
+  
+  const chatId = msg.chat.id;
+  const resp = match[1]; // the captured "whatever"
+
+  abc(resp)
+
+
 
 
 async function abc(u){
@@ -103,11 +109,9 @@ const files = _fs.createReadStream("./"+filename)
           console.log('✅  ' + _colors.green('Success Download File : ' + filename))
           bot.sendMessage(chatId,"Download Success")
           bot.sendMessage(chatId,filename)
-
        loadbar.stop()
-          file.close()
-        bot.sendDocument(chatId,files)
-   
+          file.close()   
+        send(filename)
       })
       res.on('error', _ => {
           loadbar.stop()
