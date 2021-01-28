@@ -290,7 +290,7 @@ bot.sendMessage(chatId, `Cooldown 3 detik gan`);
 
 
   }
-
+}
 
 });
 let link
