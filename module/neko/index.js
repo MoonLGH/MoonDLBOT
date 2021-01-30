@@ -5,7 +5,7 @@ const request = require("request")
 const respsplit = resp.split(" ").join("+")
 
 const search = `https://nekopoi.care/?s=${respsplit}&post_type=anime`
-const hlist = []
+let hlist = []
     request(search, async (error, response, html) => {
         let $ = cheerio.load(html);
     $(".result").find("ul > li").each(function (){
@@ -16,7 +16,9 @@ const hlist = []
             title,
             link
           })
+        console.log(hlist)
     })
+        console.log(hlist)
 })
 console.log(hlist)
 }
