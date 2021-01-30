@@ -51,7 +51,7 @@ const clacSize = (a, b) => {
 exports.zippy = async (chatId,resp,bots) =>{    
 bot = bots
     
-    if(resp == ""){
+    if(resp == "" || !resp){
     abc(resp)
     }else{
               bot.sendMessage(chatId,"Please Put An Valid Link :D")
