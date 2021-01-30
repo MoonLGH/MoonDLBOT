@@ -16,7 +16,7 @@ let hlist = []
             title,
             link
           })
-        console.log(hlist)
+        console.log(title , link)
     })
         console.log(hlist)
 })
