@@ -6,10 +6,10 @@ const respsplit = resp.split(" ").join("+")
 
 const search = `https://nekopoi.care/?s=${respsplit}&post_type=anime`
 let hlist = []
+        let title,link;
     request(search, async (error, response, html) => {
         let $ = cheerio.load(html);
     $(".result").find("ul > li").each(function (){
-        let title,link;
         title = $(this).find(".top > h2").text();
         link = $(this).find(".top > h2").attr("href");
         hlist.push({
@@ -19,6 +19,8 @@ let hlist = []
         console.log(title , link)
     })
         console.log(hlist)
+                console.log(title , link)
 })
 console.log(hlist)
+        console.log(title , link)
 }
