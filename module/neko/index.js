@@ -1,27 +1,27 @@
-exports.nekosearch = (chatId,resp,bot)=>{
-const axios = require("axios")
-const cheerio = require("cheerio")
-const request = require("request")
-const respsplit = resp.replace(" ", "+")
+exports.nekosearch = async (chatId,resp,bot)=>{
+    const cheerio = require("cheerio")
+    const respsplit = resp.replace(" ", "+")
+    const cloudflareScraper = require('cloudflare-scraper');
+    const search = `https://nekopoi.care/?s=${respsplit}&post_type=anime`
+    const hlist = []
 
-const search = `https://nekopoi.care/?s=${respsplit}&post_type=anime`
-const hlist = []
-console.log(search)
+    bot.sendMessage(chatId, "Sabar, Sedang Membobol Cloudflarenya kucing :3")
+    console.log(search)
+        const response = await cloudflareScraper.get(search);
+    
+    const $ = cheerio.load(response)
+        
+        $(".result").find("ul > li").each(function (){
+            let title,link;
+            title = $(this).find(".top > h2").text();
+            link = $(this).find(".top > h2 > a").attr("href");
+            hlist.push({
+                title,
+                link
+              })
+        })
 
-    request(search, async (error, response, html) => {
-        // let $ = cheerio.load(html);
-        setTimeout(() => {
-        console.log(html)
-            
-        }, 8000);
-
-    // $(".result").find("ul > li").each(function (){
-    //     let title,link;
-    //     title = $(this).find(".top > h2").text();
-    //     link = $(this).find(".top > h2").attr("href");
-    //     hlist.push({
-    //         title,
-    //         link
-    //       })
-    })
+hlist.forEach(ele => {
+bot.sendMessage(chatId, `Title = ${ele.title} \n Link = ${ele.link}`);
+});
 }
