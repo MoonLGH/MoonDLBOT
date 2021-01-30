@@ -4,7 +4,7 @@ const TelegramBot = require('node-telegram-bot-api');
 // replace the value below with the Telegram token you receive from @BotFather
 let srcd = false
 const ytdl = require("ytdl-core")
-const bot = new TelegramBot(process.env.TELEGRAMKEY, {polling: true});
+// const bot = new TelegramBot(process.env.TELEGRAMKEY, {polling: true});
 // calm this zippy dl will be an massive code
 const clacSize = (a, b) => {
   if (0 == a) return "0 Bytes";
