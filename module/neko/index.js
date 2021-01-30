@@ -13,7 +13,7 @@ console.log(search)
         setTimeout(() => {
         console.log(html)
             
-        }, 1000);
+        }, 8000);
 
     // $(".result").find("ul > li").each(function (){
     //     let title,link;
