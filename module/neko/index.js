@@ -18,5 +18,5 @@ const hlist = []
           })
     })
 })
-bot.sendMessage(chatId, `${hlist}`);
+console.log(hlist)
 }
