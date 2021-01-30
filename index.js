@@ -23,3 +23,12 @@ bot.onText(/\/ytpl (.+)/i, async (msg, match) => {
   const resp = match[1];
   handler.yt.ytpl(chatId,resp,bot)
 });
+
+bot.onText(/\/help/i, async (msg, match) => {
+  const chatId = msg.chat.id;
+  handler.common.help(chatId,bot)
+})
+bot.onText(/\/start/i, async (msg, match) => {
+  const chatId = msg.chat.id;
+  handler.common.start(chatId,bot)
+})
