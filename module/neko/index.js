@@ -5,8 +5,8 @@ const respsplit = resp.split(" ").join("+")
 
 const search = `https://nekopoi.care/?s=${respsplit}&post_type=anime`
 const hlist = []
-axios.get(search).then((response) => {
-    const $ = cheerio.load(response.data)
+    request(search, async (error, response, html) => {
+        let $ = cheerio.load(html);
     $(".result").find("ul > li").each(function (){
         let title,link;
         title = $(this).find(".top > h2").text();
@@ -14,7 +14,7 @@ axios.get(search).then((response) => {
         hlist.push({
             title,
             link
-        })
+          })
     })
 })
 bot.sendMessage(chatId, `${hlist}`);
