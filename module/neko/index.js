@@ -1,6 +1,7 @@
 exports.nekosearch = (chatId,resp,bot)=>{
     const axios = require("axios")
 const cheerio = require("cheerio")
+const request = require("request")
 const respsplit = resp.split(" ").join("+")
 
 const search = `https://nekopoi.care/?s=${respsplit}&post_type=anime`
