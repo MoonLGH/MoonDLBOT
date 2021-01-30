@@ -32,3 +32,9 @@ bot.onText(/\/start/i, async (msg, match) => {
   const chatId = msg.chat.id;
   handler.common.start(chatId,bot)
 })
+
+bot.onText(/\/nekosearch (.+)/i, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const resp = match[1];
+  handler.neko.nekosearch(chatId,resp,bot)
+});
