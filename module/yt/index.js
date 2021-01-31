@@ -3,11 +3,11 @@ const ytdl = require("ytdl-core")
 exports.ytdl = async (chatId,resp,bot) =>{
   const args = resp.split(" ")
 
-  console.log("ytdl command was executed " + resp)
-  const fileOptions = {
-    filename: info.videoDetails.title,
-  };
     if(ytdl.validateURL(args[0]) === true){
+      console.log("ytdl command was executed " + resp)
+      const fileOptions = {
+        filename: info.videoDetails.title,
+      };
   const info = await ytdl.getBasicInfo(resp)
   const bufs = [];
   const stream = ytdl(resp,{filter: format => format.container === 'mp4'});
@@ -19,6 +19,12 @@ exports.ytdl = async (chatId,resp,bot) =>{
   })
   bot.sendMessage(chatId, info.videoDetails.title);
 }else{
+  const info = await ytdl.getBasicInfo(args[1])
+
+  console.log("ytdl command was executed " + args[1] + "in else")
+  const fileOptions = {
+    filename: info.videoDetails.title,
+  };
   if(args[0] == "hq"){
     const bufs = [];
     const stream = ytdl(args[1],{filter: format => format.container === 'mp4', quality: 'highestvideo',});
