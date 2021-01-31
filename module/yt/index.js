@@ -1,46 +1,46 @@
 let srcd = false
-const ytdl = require("ytdl-core")
+let ytdl = require("ytdl-core")
 exports.ytdl = async (chatId,resp,bot) =>{
-  const args = resp.split(" ")
+  let args = resp.split(" ")
 
     if(ytdl.validateURL(args[0]) === true){
       console.log("ytdl command was executed " + resp)
-      const fileOptions = {
+      let fileOptions = {
         filename: info.videoDetails.title,
       };
-  const info = await ytdl.getBasicInfo(resp)
-  const bufs = [];
-  const stream = ytdl(resp,{filter: format => format.container === 'mp4'});
+  let info = await ytdl.getBasicInfo(resp)
+  let bufs = [];
+  let stream = ytdl(resp,{filter: format => format.container === 'mp4'});
   stream.on('data', function(d){ bufs.push(d); });
   stream.on('end', function(){
     bot.sendMessage(chatId, "Video Downloaded!")
-    const vid = Buffer.concat(bufs);
+    let vid = Buffer.concat(bufs);
   bot.sendVideo(chatId, vid,{},fileOptions)
   })
   bot.sendMessage(chatId, info.videoDetails.title);
 }else{
-  const info = await ytdl.getBasicInfo(args[1])
+  let info = await ytdl.getBasicInfo(args[1])
 
   console.log("ytdl command was executed " + args[1] + "in else")
-  const fileOptions = {
+  let fileOptions = {
     filename: info.videoDetails.title,
   };
   if(args[0] == "hq"){
-    const bufs = [];
-    const stream = ytdl(args[1],{filter: format => format.container === 'mp4', quality: 'highestvideo',});
+    let bufs = [];
+    let stream = ytdl(args[1],{filter: format => format.container === 'mp4', quality: 'highestvideo',});
     stream.on('data', function(d){ bufs.push(d); });
     stream.on('end', function(){
       bot.sendMessage(chatId, "Video Downloaded! (High Quality)")
-      const vid = Buffer.concat(bufs);
+      let vid = Buffer.concat(bufs);
     bot.sendVideo(chatId, vid,{},fileOptions)
     })
   }else if(args[0] == "ha"){
-    const bufs = [];
-    const stream = ytdl(args[1],{filter: format => format.container === 'mp4', quality: 'highestaudio',});
+    let bufs = [];
+    let stream = ytdl(args[1],{filter: format => format.container === 'mp4', quality: 'highestaudio',});
     stream.on('data', function(d){ bufs.push(d); });
     stream.on('end', function(){
       bot.sendMessage(chatId, "Video Downloaded! (High Audio)")
-      const vid = Buffer.concat(bufs);
+      let vid = Buffer.concat(bufs);
     bot.sendVideo(chatId, vid,{},fileOptions)
     })
   }else{
@@ -49,7 +49,7 @@ exports.ytdl = async (chatId,resp,bot) =>{
 }
 }
 exports.searchyt = async (chatId,resp,bot) =>{
-    const ytsr = require('ytsr');
+    let ytsr = require('ytsr');
   let availableFilters = await ytsr.getFilters(resp);
   let filter = availableFilters.get('Type').get('Video');
   let searchResults = await ytsr(filter.url, { limit: 3 });
@@ -82,17 +82,17 @@ exports.ytpl = async (chatId,resp,bot) =>{
     var ytpl = require('ytpl');
     var fs = require('fs');
     
-    const ytdl = require("ytdl-core")
+    let ytdl = require("ytdl-core")
     let playlist
     let judul;
     async function abc(){
      playlist = await ytpl(resp);
-    const pli = playlist.items
+    let pli = playlist.items
     judul = playlist.title.replace(/[/\\?%*:|"<>]/g, '-');
         fs.mkdirSync("./"+ judul)
     let lenght = playlist.estimatedItemCount
     pli.forEach(async (item)=>{ 
-    const vidname = await ytdl.getBasicInfo(item.shortUrl);
+    let vidname = await ytdl.getBasicInfo(item.shortUrl);
     console.log(item.shortUrl)
     var filename = vidname.videoDetails.title
     filename = filename.replace(/[/\\?%*:|"<>]/g, '-');
@@ -120,7 +120,7 @@ exports.ytpl = async (chatId,resp,bot) =>{
     output.on('close', function () {
         console.log(archive.pointer() + ' total bytes');
         console.log('archiver has been finalized and the output file descriptor has closed.');
-        const fse = require("fs-extra")
+        let fse = require("fs-extra")
         bot.sendDocument(chatId,"./"+ judul +".zip")
         removezip()
     });
@@ -134,7 +134,7 @@ exports.ytpl = async (chatId,resp,bot) =>{
     archive.finalize();
     }
     function removezip(){
-        const fse = require("fs-extra")
+        let fse = require("fs-extra")
       setTimeout(()=>{
         fse.removeSync("./"+judul +".zip")
         fse.removeSync("./"+ judul)
