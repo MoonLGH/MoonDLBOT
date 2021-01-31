@@ -7,7 +7,7 @@ exports.nekosearch = async (chatId,resp,bot)=>{
 
     bot.sendMessage(chatId, "Sabar, Sedang Membobol Cloudflarenya kucing :3")
     console.log(search)
-        const response = await cloudflareScraper.get(search);
+        const response = await cloudflareScraper.get(search)
     
     const $ = cheerio.load(response)
         

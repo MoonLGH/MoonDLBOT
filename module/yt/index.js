@@ -1,12 +1,12 @@
 let srcd = false
 const ytdl = require("ytdl-core")
 exports.ytdl = async (chatId,resp,bot) =>{
-    if(ytdl.validateURL(resp) === true){
-  const info = await ytdl.getBasicInfo(resp)
   console.log("ytdl command was executed " + resp)
   const fileOptions = {
     filename: info.videoDetails.title,
   };
+    if(ytdl.validateURL(resp) === true){
+  const info = await ytdl.getBasicInfo(resp)
   const bufs = [];
   const stream = ytdl(resp,{filter: format => format.container === 'mp4'});
   stream.on('data', function(d){ bufs.push(d); });
@@ -17,7 +17,28 @@ exports.ytdl = async (chatId,resp,bot) =>{
   })
   bot.sendMessage(chatId, info.videoDetails.title);
 }else{
+  const args = resp.split(" ")
+  if(args[0] == "hq"){
+    const bufs = [];
+    const stream = ytdl(args[1],{filter: format => format.container === 'mp4', quality: 'highestvideo',});
+    stream.on('data', function(d){ bufs.push(d); });
+    stream.on('end', function(){
+      bot.sendMessage(chatId, "Video Downloaded! (High Quality)")
+      const vid = Buffer.concat(bufs);
+    bot.sendVideo(chatId, vid,{},fileOptions)
+    })
+  }else if(args[0] == "ha"){
+    const bufs = [];
+    const stream = ytdl(args[1],{filter: format => format.container === 'mp4', quality: 'highestaudio',});
+    stream.on('data', function(d){ bufs.push(d); });
+    stream.on('end', function(){
+      bot.sendMessage(chatId, "Video Downloaded! (High Audio)")
+      const vid = Buffer.concat(bufs);
+    bot.sendVideo(chatId, vid,{},fileOptions)
+    })
+  }else{
   bot.sendMessage(chatId,"Im sorry But "+`\"${resp}\"`+" Is Not An YT Video")
+  }
 }
 }
 exports.searchyt = async (chatId,resp,bot) =>{
