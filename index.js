@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const handler = require("./handler/handler.js")
-const bot = new TelegramBot("1520570744:AAFwU4cGxyqxRkQSsMm_arlrwGlBQGuTEa0", {polling: true});
+const bot = new TelegramBot(process.env.TELEGRAMKEY, {polling: true});
 bot.onText(/\/zippy (.+)/i, async (msg, match) => {
   const chatId = msg.chat.id;
   const resp = match[1];
