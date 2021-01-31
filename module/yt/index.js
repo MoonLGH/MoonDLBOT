@@ -21,6 +21,8 @@ exports.ytdl = async (chatId,resp,bot) =>{
   bot.sendMessage(chatId, info.videoDetails.title);
 }else{
 
+
+    if(ytdl.validateURL(args[1]) === true){
   if(args[0] == "hq"){
     let info = await ytdl.getBasicInfo(args[1])
 
@@ -51,7 +53,8 @@ exports.ytdl = async (chatId,resp,bot) =>{
       let vid = Buffer.concat(bufs);
     bot.sendVideo(chatId, vid,{},fileOptions)
     })
-  }else{
+  }
+}else{
   bot.sendMessage(chatId,"Im sorry But "+`\"${resp}\"`+" Is Not An YT Video")
   }
 }
