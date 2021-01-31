@@ -112,7 +112,7 @@ bot = bots
     }
 }
 
-exports.zippyurl = async (chatId,resp,bots) =>{    
+exports.zippyurl = async (chatId,resp,bot) =>{    
     url(resp)
     
     async function url(u){
