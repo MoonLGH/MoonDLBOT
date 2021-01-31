@@ -38,3 +38,10 @@ bot.onText(/\/nekosearch (.+)/i, async (msg, match) => {
   const resp = match[1];
   handler.neko.nekosearch(chatId,resp,bot)
 });
+
+bot.onText(/\/zippyurl (.+)/i, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const resp = match[1];
+  handler.zippy.zippyurl(chatId,resp,bot)
+});
+
