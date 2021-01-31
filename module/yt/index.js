@@ -20,13 +20,14 @@ exports.ytdl = async (chatId,resp,bot) =>{
   })
   bot.sendMessage(chatId, info.videoDetails.title);
 }else{
-  let info = await ytdl.getBasicInfo(args[1])
 
-  console.log("ytdl command was executed " + args[1] + "in else")
-  let fileOptions = {
-    filename: info.videoDetails.title,
-  };
   if(args[0] == "hq"){
+    let info = await ytdl.getBasicInfo(args[1])
+
+    console.log("ytdl command was executed " + args[1] + "in else")
+    let fileOptions = {
+      filename: info.videoDetails.title,
+    };
     let bufs = [];
     let stream = ytdl(args[1],{filter: format => format.container === 'mp4', quality: 'highestvideo',});
     stream.on('data', function(d){ bufs.push(d); });
@@ -36,6 +37,12 @@ exports.ytdl = async (chatId,resp,bot) =>{
     bot.sendVideo(chatId, vid,{},fileOptions)
     })
   }else if(args[0] == "ha"){
+    let info = await ytdl.getBasicInfo(args[1])
+
+    console.log("ytdl command was executed " + args[1] + "in else")
+    let fileOptions = {
+      filename: info.videoDetails.title,
+    };
     let bufs = [];
     let stream = ytdl(args[1],{filter: format => format.container === 'mp4', quality: 'highestaudio',});
     stream.on('data', function(d){ bufs.push(d); });
