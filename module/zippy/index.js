@@ -111,3 +111,20 @@ bot = bots
     })
     }
 }
+
+exports.zippyurl = async (chatId,resp,bots) =>{    
+    url(resp)
+    
+    async function url(u){
+    const url = await GetLink(u)
+    
+    if (url.error == true) {
+      console.log(_colors.bgRed(_colors.white(' ' + url.message + ' ')))
+                     bot.sendMessage(chatId, "Error")
+      return null
+    }else{
+              bot.sendMessage(chatId, "The ZippyDL url is " + url.url)
+    }  
+        
+   }
+    })
