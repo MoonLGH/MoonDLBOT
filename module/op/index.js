@@ -6,7 +6,11 @@ const Axios = require("axios")
 
 async function home(){
     console.log("home")
-    request(url, async (error, response, html) => {
+     var options = {
+      url : url,
+      timeout: 6000 //set waiting time till 10 minutes.
+    }
+    request(options, async (error, response, html) => {
         let $ = cheerio.load(html);
         console.log(html)
         $("#content > div.postbody > div > div > div.lts").find("ul > li")
