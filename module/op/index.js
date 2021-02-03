@@ -8,7 +8,7 @@ async function home(){
     console.log("home")
      var options = {
       url : url,
-      timeout: 6000 //set waiting time till 10 minutes.
+      timeout: 10000 //set waiting time till 10 minutes.
     }
     request(options, async (error, response, html) => {
         let $ = cheerio.load(html);
