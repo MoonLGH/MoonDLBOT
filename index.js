@@ -45,13 +45,13 @@ bot.onText(/\/zippyurl (.+)/i, async (msg, match) => {
   handler.zippy.zippyurl(chatId,resp,bot)
 });
 
-bot.onText(/\/lpurl (.+)/i, async (msg, match) => {
-  const chatId = msg.chat.id;
-  const resp = match[1];
-  handler.shortener.linkpoi(chatId,resp,bot)
-});
-bot.onText(/\/exeio (.+)/i, async (msg, match) => {
-  const chatId = msg.chat.id;
-  const resp = match[1];
-  handler.shortener.exeio(chatId,resp,bot)
-});
+// bot.onText(/\/lpurl (.+)/i, async (msg, match) => {
+//   const chatId = msg.chat.id;
+//   const resp = match[1];
+//   handler.shortener.linkpoi(chatId,resp,bot)
+// });
+// bot.onText(/\/exeio (.+)/i, async (msg, match) => {
+//   const chatId = msg.chat.id;
+//   const resp = match[1];
+//   handler.shortener.exeio(chatId,resp,bot)
+// });
