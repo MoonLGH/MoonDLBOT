@@ -5,8 +5,6 @@ const Axios = require("axios")
 
 
 async function home(){
-    const jar = request.jar()
-    var request = request.defaults({jar:jar})
     console.log("home")
      var options = {
       url : url,
