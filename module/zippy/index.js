@@ -21,7 +21,7 @@ const clacSize = (a, b) => {
   console.log('⏳  ' + _colors.yellow(`Get Page From : ${u}`))
   const zippy = await _axios({ method: 'GET', url: u }).then(res => res.data).catch(err => false)
   console.log('✅  ' + _colors.green('Done'))
-  const $ = _$.load(zippy)
+  const $ = _$.load(zippy)  
   if (!$('#dlbutton').length) {
     return { error: true, message: $('#lrbox>div').first().text().trim() }
   }

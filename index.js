@@ -51,7 +51,23 @@ bot.onText(/\/zippyurl (.+)/i, async (msg, match) => {
 //   handler.shortener.linkpoi(chatId,resp,bot)
 // });
 // bot.onText(/\/exeio (.+)/i, async (msg, match) => {
-//   const chatId = msg.chat.id;
-//   const resp = match[1];
+  // const chatId = msg.chat.id;
+  // const resp = match[1];
 //   handler.shortener.exeio(chatId,resp,bot)
 // });
+
+bot.onText(/\/ophome/i, async (msg, match) => {
+  const chatId = msg.chat.id;
+  handler.oploverz.home(chatId,bot)
+})
+
+bot.onText(/\/opog/i, async (msg, match) => {
+  const chatId = msg.chat.id;
+  handler.oploverz.ongoing(chatId,bot)
+})
+
+bot.onText(/\/opeps (.+)/i, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const resp = match[1];
+  handler.oploverz.eps(chatId,resp,bot)
+});

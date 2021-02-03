@@ -26,9 +26,8 @@ let cheerio = require("cheerio")
 let axios = require("axios")
 
 async function getlp(chatId,url,bot){
-  const zippy = await axios({ method: 'GET', url: url }).then(res => res.data).catch(err => false)
-
-const cher = cheerio.load(zippy)
+const res = await axios.get(url)
+const cher = cheerio.load(res.data)
 const lpurl = cher("#body > section > div > div > div.panel.panel-default.panel-body > div:nth-child(2) > div > div > a").attr("href")
 exe(chatId,lpurl,bot)
 bot.sendMessage(chatId, lpurl + "is the Linkpoi URL")
