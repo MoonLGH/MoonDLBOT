@@ -4,7 +4,6 @@ const url = "https://oploverz.in"
 const Axios = require("axios")
 var cloudscraper = require('cloudscraper');
 
-
 async function home(){
     console.log("home")
   var options = {
