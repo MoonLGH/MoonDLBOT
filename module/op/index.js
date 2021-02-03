@@ -5,6 +5,7 @@ const Axios = require("axios")
 
 
 async function home(){
+    console.log("home")
     request(url, async (error, response, html) => {
         let $ = cheerio.load(html);
         $("#content > div.postbody > div > div > div.lts").find("ul > li")
