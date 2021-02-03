@@ -1,18 +1,15 @@
-var request = require("request")
+const request = require("request")
 const cheerio = require("cheerio")
 const url = "https://oploverz.in"
 const Axios = require("axios")
+var cloudscraper = require('cloudscraper');
 
 
 async function home(){
     console.log("home")
-     var options = {
-      url : url,
-      timeout: 300000 //set waiting time till 10 minutes.
-    }
-    request(options, async (error, response, html) => {
-        let $ = cheerio.load(html);
-        console.log(html)
+    const req = await cloudscraper.get(url)
+// console.log(req)
+let $ = cheerio.load(req);
         $("#content > div.postbody > div > div > div.lts").find("ul > li")
         .each(function () {
           eps = $(this).find("div.dtl > h2 > a").text()
@@ -23,7 +20,6 @@ async function home(){
           console.log("Tanggal = " + tgl)
           console.log()
         });
-    })
 }
 
 async function eps(url){
