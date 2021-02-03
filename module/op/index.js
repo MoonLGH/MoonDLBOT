@@ -5,8 +5,8 @@ const Axios = require("axios")
 
 
 async function home(){
-      const req = await Axios.get(url)
-        let $ = cheerio.load(req.data);
+    request(url, async (error, response, html) => {
+        let $ = cheerio.load(html);
         $("#content > div.postbody > div > div > div.lts").find("ul > li")
         .each(function () {
           eps = $(this).find("div.dtl > h2 > a").text()
@@ -17,6 +17,7 @@ async function home(){
           console.log("Tanggal = " + tgl)
           console.log()
         });
+    })
 }
 
 async function eps(url){
