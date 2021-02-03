@@ -8,6 +8,7 @@ async function home(){
     console.log("home")
     request(url, async (error, response, html) => {
         let $ = cheerio.load(html);
+        console.log(html)
         $("#content > div.postbody > div > div > div.lts").find("ul > li")
         .each(function () {
           eps = $(this).find("div.dtl > h2 > a").text()
