@@ -1,10 +1,12 @@
-const request = require("request")
+var request = require("request")
 const cheerio = require("cheerio")
 const url = "https://oploverz.in"
 const Axios = require("axios")
 
 
 async function home(){
+    const jar = request.jar()
+    var request = request.defaults({jar:jar})
     console.log("home")
      var options = {
       url : url,
