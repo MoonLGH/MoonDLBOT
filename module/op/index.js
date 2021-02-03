@@ -7,7 +7,12 @@ var cloudscraper = require('cloudscraper');
 
 async function home(){
     console.log("home")
-    const req = await cloudscraper.get(url)
+  var options = {
+    method: 'GET',
+    url: url
+  };
+   
+const req = await cloudscraper(options)
 console.log(req)
 let $ = cheerio.load(req);
         $("#content > div.postbody > div > div > div.lts").find("ul > li")
