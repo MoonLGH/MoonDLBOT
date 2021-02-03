@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const handler = require("./handler/handler.js")
-const bot = new TelegramBot(process.env.TELEGRAMKEY, {polling: true});
+const bot = new TelegramBot("1520570744:AAFwU4cGxyqxRkQSsMm_arlrwGlBQGuTEa0", {polling: true});
 bot.onText(/\/zippy (.+)/i, async (msg, match) => {
   const chatId = msg.chat.id;
   const resp = match[1];
@@ -45,3 +45,13 @@ bot.onText(/\/zippyurl (.+)/i, async (msg, match) => {
   handler.zippy.zippyurl(chatId,resp,bot)
 });
 
+bot.onText(/\/lpurl (.+)/i, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const resp = match[1];
+  handler.shortener.linkpoi(chatId,resp,bot)
+});
+bot.onText(/\/exeio (.+)/i, async (msg, match) => {
+  const chatId = msg.chat.id;
+  const resp = match[1];
+  handler.shortener.exeio(chatId,resp,bot)
+});
